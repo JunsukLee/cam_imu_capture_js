@@ -1,0 +1,38 @@
+<launch>
+    <!-- parameters -->
+    <arg name="device_hz" default="20.0" doc="Capture hz"/>
+    <arg name="RightCamID" default="16400120" doc="RightCamID"/>
+    <arg name="LeftCamID" default="16400089" doc="LeftCamID"/>
+    <arg name="GetColorData" default="false" doc="GetColorData"/>
+    <arg name="ResizeScale" default="0.5" doc="ResizeScale"/>
+    <arg name="RawImageType" default="mono8" doc="RawImageType"/> <!-- mono8, rgb8 -->
+    
+    <!-- node (generator) -->
+    <node pkg="pointgrey_js" type="generator_trigger_js_node" name="generator_trigger_js_node" output="screen">
+        <param name="device_hz" type="double" value="$(arg device_hz)"/>
+    </node>
+
+    <!-- node (pointgrey) -->
+    <node pkg="pointgrey_js" type="pointgrey_left_rectify_js_node" name="pointgrey_left_rectify_js_node" output="screen">
+        <param name="LeftCamID" type="int" value="$(arg LeftCamID)"/>
+        <param name="GetColorData" type="bool" value="$(arg GetColorData)"/>        
+        <param name="ResizeScale" type="double" value="$(arg ResizeScale)"/>
+        <param name="RawImageType" type="string" value="$(arg RawImageType)"/>
+    </node>
+
+    <!-- node (pointgrey) -->
+    <node pkg="pointgrey_js" type="pointgrey_right_rectify_js_node" name="pointgrey_right_rectify_js_node" output="screen">
+        <param name="RightCamID" type="int" value="$(arg RightCamID)"/>
+        <param name="GetColorData" type="bool" value="$(arg GetColorData)"/>        
+        <param name="ResizeScale" type="double" value="$(arg ResizeScale)"/>
+        <param name="RawImageType" type="string" value="$(arg RawImageType)"/>
+    </node>
+    
+    <!-- 다른 launch 포함 -->
+    <!-- node (RPLidar) -->
+    <!-- <include file="$(find rplidar_ros)/launch/rplidar_s2.launch">
+    </include> -->
+    
+    <!-- node (rviz) -->       
+    <!-- <node type="rviz" name="rviz" pkg="rviz" args="-d $(find pointgrey_js)/rviz/stereo_point_grey_view.rviz" />     -->
+</launch>

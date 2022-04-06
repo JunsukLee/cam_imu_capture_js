@@ -1,0 +1,75 @@
+%YAML:1.0
+
+#common parameters
+imu: 0
+num_of_cam: 2  
+
+imu_topic: ""
+image0_topic: "/cam0/image_raw"
+image1_topic: "/cam1/image_raw"
+
+cam0_calib: "camLeftResize.yaml"
+cam1_calib: "camRightResize.yaml"
+image_width: 688
+image_height: 650
+
+# Left camera
+cam0_distortion_parameters:
+   k1: -0.339091468414540
+   k2: 0.130948119383280
+   k3: -0.024058675101892
+   p1: -1.868339428011414e-04
+   p2: 8.589609334548108e-05
+cam0_projection_parameters:
+   fx: 3.312887327394423e+02
+   fy: 3.312317448197555e+02
+   cx: 3.366641793327342e+02
+   cy: 3.228930757598208e+02
+
+# Right camera
+cam1_distortion_parameters:
+   k1: -0.332179390095905
+   k2: 0.120821244571753
+   k3: -0.020252254269438
+   p1: 1.059779996289758e-04
+   p2: 4.100279097949845e-05
+cam1_projection_parameters:
+   fx: 3.303829331873623e+02
+   fy: 3.302333029103044e+02
+   cx: 3.419204055370203e+02
+   cy: 3.231553775982950e+02
+
+# body_T_cam0: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [1, 0, 0, 0,
+#           0, 1, 0, 0,
+#           0, 0, 1, 0,
+#           0, 0, 0, 1]
+
+# body_T_cam1: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [1, 0, 0, 0.537165718864418,
+#           0, 1, 0, 0,
+#           0, 0, 1, 0,
+#           0, 0, 0, 1]
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 1, 0,
+          0, 0, 0, 1]
+
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [0.999923124763814, -0.010949870222554, 0.005817637379527, 99.113783199724520,
+          0.010982356958493, 0.999924112277449, -0.005581892312754, 1.447546892531967,
+          -0.005756074895855, 0.005645354573821, 0.999967498258583, -1.191915571926049,
+          0, 0, 0, 1]
